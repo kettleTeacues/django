@@ -1,1 +1,1 @@
-web: pj_blog.wsgi
+web: gunicorn pj_blog.wsgi
