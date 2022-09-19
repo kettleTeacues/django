@@ -132,3 +132,4 @@ LOGOUT_REDIRECT_URL = "/login/"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'registration.User'
+FRONTEND_URL = "http://127.0.0.1:8000"

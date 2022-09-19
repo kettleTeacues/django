@@ -39,3 +39,17 @@ class SignUpForm(UserCreationForm):
             message = message_template + activate_url
             user.email_user(subject, message)
         return user
+
+def activate_user(uidb64, token):    
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = User.objects.get(pk=uid)
+    except Exception:
+        return False
+
+    if default_token_generator.check_token(user, token):
+        user.is_active = True
+        user.save()
+        return True
+    
+    return False
