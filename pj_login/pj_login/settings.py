@@ -137,8 +137,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'registration.User'
 FRONTEND_URL = "www.piechika.com"
 
+mailgunApiKey = os.environ['MAILGUN_API_KEY']
 ANYMAIL = {
-    "MAILGUN_API_KEY": "158272963f52d7c4ec25fa23ea1f9cb5-78651cec-43f199ae",
+    "MAILGUN_API_KEY": mailgunApiKey,
     "MAILGUN_SENDER_DOMAIN": 'sandbox3f3c2d489c254900ac47683e076e9c69.mailgun.org',
 }
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
