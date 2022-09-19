@@ -120,7 +120,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/"
@@ -135,12 +135,12 @@ LOGOUT_REDIRECT_URL = "/login/"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'registration.User'
-FRONTEND_URL = "http://127.0.0.1:8000"
+FRONTEND_URL = "www.piechika.com"
 
 ANYMAIL = {
-    "MAILGUN_API_KEY": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-    "MAILGUN_SENDER_DOMAIN": 'sandboxYYYYYYYYYYYYYYYYYYYYYYYYYYY.mailgun.org',
+    "MAILGUN_API_KEY": "158272963f52d7c4ec25fa23ea1f9cb5-78651cec-43f199ae",
+    "MAILGUN_SENDER_DOMAIN": 'sandbox3f3c2d489c254900ac47683e076e9c69.mailgun.org',
 }
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
-DEFAULT_FROM_EMAIL = "hondo@example.com"
-SERVER_EMAIL = "server@example.com"
+DEFAULT_FROM_EMAIL = "piechika@example.com"
+SERVER_EMAIL = "piechika.info@example.com"
