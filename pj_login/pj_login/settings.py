@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'registration',
+    'anymail',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -135,3 +136,11 @@ LOGOUT_REDIRECT_URL = "/login/"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'registration.User'
 FRONTEND_URL = "http://127.0.0.1:8000"
+
+ANYMAIL = {
+    "MAILGUN_API_KEY": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "MAILGUN_SENDER_DOMAIN": 'sandboxYYYYYYYYYYYYYYYYYYYYYYYYYYY.mailgun.org',
+}
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+DEFAULT_FROM_EMAIL = "hondo@example.com"
+SERVER_EMAIL = "server@example.com"
