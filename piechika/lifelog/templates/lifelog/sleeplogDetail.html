@@ -11,4 +11,6 @@
         <li>{{ sleeplogDetail.sleepingTime }}</li>
     </ul>
     <a href="{% url 'index' %}" class="btn btn-primary">一覧</a>
+    <a href="{% url 'update' sleeplogDetail.pk %}" class="btn btn-primary">修正</a>
+    <a href="{% url 'delete' sleeplogDetail.pk %}" class="btn btn-primary">削除</a>
 {% endblock content %}

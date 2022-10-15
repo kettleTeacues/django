@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}sleeplogCreate{% endblock title %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="submit">
+    </form>
+    <a href="{% url 'index' %}" class="btn btn-primary">一覧</a>
+{% endblock content %}
