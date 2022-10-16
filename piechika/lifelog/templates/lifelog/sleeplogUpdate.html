@@ -6,8 +6,9 @@
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="submit">
+        <input type="submit" class="btn smallbtn rounded-pill bg-secondary" value="submit">
     </form>
-    <a href="{% url 'index' %}" class="btn btn-primary">一覧</a>
-    <a href="{% url 'detail' sleeplogUpdate.pk %}" class="btn btn-primary">detail</a>
+    <br>
+    <a href="{% url 'index' %}" class="btn smallbtn rounded-pill bg-secondary">一覧</a>
+    <a href="{% url 'detail' sleeplogUpdate.pk %}" class="btn smallbtn rounded-pill bg-secondary">detail</a>
 {% endblock content %}

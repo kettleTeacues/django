@@ -12,8 +12,9 @@
             <li>{{ sleeplogDelete.endDateTime }}</li>
             <li>{{ sleeplogDelete.sleepingTime }}</li>
         </ul>
-        <button type="submit">delete this record</button>
+        <button type="submit" class="btn smallbtn rounded-pill bg-secondary">delete this record</button>
     </form>
-    <a href="{% url 'index' %}" class="btn btn-primary">一覧</a>
-    <a href="{% url 'detail' sleeplogDelete.pk %}" class="btn btn-primary">detail</a>
+    <br>
+    <a href="{% url 'index' %}" class="btn smallbtn rounded-pill bg-secondary">一覧</a>
+    <a href="{% url 'detail' sleeplogDelete.pk %}" class="btn smallbtn rounded-pill bg-secondary">detail</a>
 {% endblock content %}

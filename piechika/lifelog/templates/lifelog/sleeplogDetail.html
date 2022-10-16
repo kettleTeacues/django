@@ -3,14 +3,34 @@
 {% block title %}sleeplogDetail{% endblock title %}
 
 {% block content %}
-    <ul>
-        <li>{{ sleeplogDetail.userId }}</li>
-        <li>{{ sleeplogDetail.date }}</li>
-        <li>{{ sleeplogDetail.staDateTime }}</li>
-        <li>{{ sleeplogDetail.endDateTime }}</li>
-        <li>{{ sleeplogDetail.sleepingTime }}</li>
-    </ul>
-    <a href="{% url 'index' %}" class="btn btn-primary">一覧</a>
-    <a href="{% url 'update' sleeplogDetail.pk %}" class="btn btn-primary">修正</a>
-    <a href="{% url 'delete' sleeplogDetail.pk %}" class="btn btn-primary">削除</a>
+    <table class="table" style="width: auto;">
+        <tbody>
+            <tr>
+                <th scope="row">user id</th>
+                <td>{{ sleeplogDetail.userId }}</td>
+            </tr>
+            <tr>
+                <th scope="row">date</th>
+                <td>{{ sleeplogDetail.date }}</td>
+            </tr>
+            <tr>
+                <th scope="row">start date time</th>
+                <td>{{ sleeplogDetail.staDateTime }}</td>
+            </tr>
+            <tr>
+                <th scope="row">end date time</th>
+                <td>{{ sleeplogDetail.endDateTime }}</td>
+            </tr>
+            <tr>
+                <th scope="row">sleeping time</th>
+                <td>{{ sleeplogDetail.sleepingTime }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{% url 'index' %}" class="btn smallbtn rounded-pill bg-secondary">一覧</a>
+    <a href="{% url 'update' sleeplogDetail.pk %}" class="btn smallbtn rounded-pill bg-secondary">修正</a>
+    <a href="{% url 'delete' sleeplogDetail.pk %}" class="btn smallbtn rounded-pill bg-secondary">削除</a>
 {% endblock content %}
+
+
+
