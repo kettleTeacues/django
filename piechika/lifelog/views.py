@@ -1,5 +1,4 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import logout
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import sleepLog
@@ -48,7 +47,3 @@ class sleeplogDeleteView(DeleteView):
     model = sleepLog
     context_object_name = 'sleeplogDelete'
     success_url = reverse_lazy('index')
-
-def logoutView(request):
-    logout(request)
-    return redirect('index')
