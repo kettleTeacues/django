@@ -27,6 +27,8 @@
             </tr>
         </tbody>
     </table>
+    <a href="{% url 'condition' sleeplogDetail.pk %}" class="btn smallbtn rounded-pill bg-secondary">add conditioin</a>
+    <br>
     <a href="{% url 'index' %}" class="btn smallbtn rounded-pill bg-secondary">一覧</a>
     <a href="{% url 'update' sleeplogDetail.pk %}" class="btn smallbtn rounded-pill bg-secondary">修正</a>
     <a href="{% url 'delete' sleeplogDetail.pk %}" class="btn smallbtn rounded-pill bg-secondary">削除</a>
