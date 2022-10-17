@@ -1,7 +1,11 @@
-from winreg import DeleteValue
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import sleepLog
+
+def indexView(request):
+    sleeplogList = sleepLog.objects.order_by('-date')
+    return render(request, 'lifelog/index.html', {'sleeplogList': sleeplogList})
 
 class sleeplogListView(ListView):
     template_name = 'lifelog/sleeplogList.html'
