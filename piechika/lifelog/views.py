@@ -1,24 +1,44 @@
-from multiprocessing import context
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
+from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+
+from django.db.models import Count
+
 from .models import sleepLog, condition
+from .consts import ITEM_PER_PAGE
 
 def indexView(request):
     sleeplogList = sleepLog.objects.order_by('-date')
-    return render(request, 'lifelog/index.html', {'sleeplogList': sleeplogList})
+    
+    paginator = Paginator(sleeplogList, ITEM_PER_PAGE)
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.page(page_number)
 
-class sleeplogListView(ListView):
+    return render(
+        request,
+        'lifelog/index.html',
+        {'page_obj': page_obj}
+    )
+
+
+class sleeplogListView(LoginRequiredMixin, ListView):
     template_name = 'lifelog/sleeplogList.html'
     model = sleepLog
+    def get_queryset(self):
+        return sleepLog.objects.filter().order_by('-id')
+
+    paginate_by = ITEM_PER_PAGE
     context_object_name = 'sleeplogList'
 
-class sleeplogDetailView(DetailView):
+class sleeplogDetailView(LoginRequiredMixin, DetailView):
     template_name = 'lifelog/sleeplogDetail.html'
     model = sleepLog
     context_object_name = 'sleeplogDetail'
 
-class createConditionView(CreateView):
+class createConditionView(LoginRequiredMixin, CreateView):
     template_name = 'lifelog/conditionForm.html'
     model = condition
     fields = (
@@ -40,7 +60,7 @@ class createConditionView(CreateView):
     def get_success_url(self):
         return reverse('detail', kwargs={'pk': self.object.sleepLogId.id})
 
-class sleeplogCreateView(CreateView):
+class sleeplogCreateView(LoginRequiredMixin, CreateView):
     template_name = 'lifelog/sleeplogCreate.html'
     model = sleepLog
     fields = (
@@ -52,7 +72,7 @@ class sleeplogCreateView(CreateView):
     )
     success_url = reverse_lazy('index')
 
-class sleeplogUpdateView(UpdateView):
+class sleeplogUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'lifelog/sleeplogUpdate.html'
     model = sleepLog
     context_object_name = 'sleeplogUpdate'
@@ -63,10 +83,30 @@ class sleeplogUpdateView(UpdateView):
         'endDateTime',
         'sleepingTime'
     )
-    success_url = reverse_lazy('index')
+    
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
 
-class sleeplogDeleteView(DeleteView):
+        if obj.user != self.request.user:
+            raise PermissionDenied
+
+        return obj
+
+    def get_success_url(self):
+        return reverse('detail', kwargs={'pk': self.object.id})
+
+class sleeplogDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'lifelog/sleeplogDelete.html'
     model = sleepLog
     context_object_name = 'sleeplogDelete'
-    success_url = reverse_lazy('index')
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+
+        if obj.user != self.request.user:
+            raise PermissionDenied
+
+        return obj
+
+    def get_success_url(self):
+        return reverse('detail', kwargs={'pk': self.object.id})

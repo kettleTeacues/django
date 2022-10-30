@@ -32,6 +32,12 @@
     <a href="{% url 'index' %}" class="btn smallbtn rounded-pill bg-secondary">一覧</a>
     <a href="{% url 'update' sleeplogDetail.pk %}" class="btn smallbtn rounded-pill bg-secondary">修正</a>
     <a href="{% url 'delete' sleeplogDetail.pk %}" class="btn smallbtn rounded-pill bg-secondary">削除</a>
+
+    <div class="border p-4 mb-2">
+        {% for item in object.condition_set.all %}
+        <h3 class="h4">{{ item.text }}</h3>
+        {% endfor %}
+    </div>
 {% endblock content %}
 
 

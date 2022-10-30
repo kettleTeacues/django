@@ -4,7 +4,7 @@
 {% block h1 %}コンディションログ{% endblock %}
 
 {% block content %}
-  <form method="post" class="p-4 m-4 bg-light border border-success rounded form-group">
+  <form method="post" enctype="multipart/form-data" class="p-4 m-4 bg-light border border-success rounded form-group">
     {% csrf_token %}
     <label>日付</label>
     <input class="form-control" value="{{ sleepLog.date }}" readonly>

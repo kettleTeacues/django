@@ -12,6 +12,7 @@ class sleepLog(models.Model):
     staDateTime = models.DateTimeField()
     endDateTime = models.DateTimeField()
     sleepingTime = models.CharField(max_length=5)
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.userId + ' ' + self.date.strftime('%Y/%m/%d')
@@ -20,6 +21,7 @@ class condition(models.Model):
     dateTime = models.DateTimeField(default=timezone.now)
     rate = models.IntegerField(choices = RATE_CHOICES)
     text = models.CharField(max_length = 140)
+    picture = models.ImageField(null = True, blank=True)
     sleepLogId = models.ForeignKey(sleepLog, on_delete = models.CASCADE)
 
     def __str__(self):
